@@ -1,4 +1,23 @@
 <resources>
     <string name="app_name">艾数抢红包</string>
     <string name="accessibility_description">抢红包服务</string>
+    <string name="splash_open_now">马上开启</string>
+    <string name="splash_already_read">我已阅读并同意</string>
+    <string name="splash_protocol"><b>《用户协议》</b></string>
+    <!--<string name="splash_protocol">Html.fromHtml(""+"《用户协议》"+"")</string>-->
+
+    <!--main-->
+    <string name="main_setting">设置</string>
+    <string name="main_start">开始</string>
+    <string name="main_pause">暂停</string>
+    <string name="main_lucky_money_tips">已抢红包金额(元)</string>
+    <string name="main_lucky_money_count">0</string>
+
+    <string name="main_check_permission">找到%s，然后开启服务即可</string>
+    <string name="main_lucky_money_picking">努力抢红包中...</string>
+
+    <string name="setting_title">设置</string>
+    <string name="setting_open_Accessibility">开启辅助功能</string>
+    <string name="setting_open_auto_start">开启自启动</string>
+    <string name="setting_delay_time">设置延迟时间</string>
 </resources>

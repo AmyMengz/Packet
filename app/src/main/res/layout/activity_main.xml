@@ -1,18 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.aissure.packet.packet.activity.MainActivity"
-    android:background="@color/colorAccent">
+    android:layout_height="match_parent">-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
-</RelativeLayout>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.aissure.packet.packet.activity.MainActivity">
+
+        <include
+            android:id="@+id/actionBar"
+            layout="@layout/action_bar"></include>
+
+        <LinearLayout
+            android:id="@+id/lv_main_top"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_bg_height"
+            android:layout_below="@id/actionBar"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/bg1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/main_bg_margin_bottom">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/main_lucky_money_tips"
+                android:textColor="@color/white"
+                android:textSize="@dimen/main_big_text_size" />
+
+            <TextView
+                android:id="@+id/tv_main_lucky_money_count"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/main_lucky_money_count"
+                android:textColor="@color/white"
+                android:textSize="@dimen/main_big_text_size" />
+
+            <Button
+                android:id="@+id/btn_main_start"
+                android:layout_width="@dimen/main_start_btn_width"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_yellow_btn1"
+                android:text="@string/main_start"
+                android:textColor="@color/white"
+                android:textSize="@dimen/main_text_size"
+
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_picking_tips"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lv_main_top"
+            android:gravity="center"
+            android:padding="@dimen/main_tips_padding"
+            android:text="@string/main_lucky_money_picking"
+            android:textSize="@dimen/main_big_text_size" />
+
+        <GridView
+            android:id="@+id/gv_main_other"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lv_main_top"
+            android:layout_marginTop="@dimen/main_bg_margin_bottom"
+            android:numColumns="3"
+            android:padding="@dimen/main_grid_padding"
+
+            ></GridView>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_main_ad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/gv_main_other">
+
+        </android.support.v4.view.ViewPager>
+
+
+    </RelativeLayout>
+
+<!--</ScrollView>-->

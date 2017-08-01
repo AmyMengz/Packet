@@ -16,21 +16,25 @@ import service.PacketService;
  */
 
 public class PermissionUtil {
-    public static void checkAccessibility(Context context){
-        if(!isAccessibilitySettingsOn(context)){
+    public static boolean checkAccessibility(Context context) {
+        if (!isAccessibilitySettingsOn(context)) {
             try {
                 //打开系统设置中辅助功能
                 Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
                 context.startActivity(intent);
-                Toast.makeText(context, "找到"+context.getString(R.string.app_name)+"，然后开启服务即可", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, String.format(context.getResources().getString(R.string.main_check_permission), context.getString(R.string.app_name))
+                        , Toast.LENGTH_LONG).show();
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            return false;
         }
+        return true;
     }
 
     /**
      * Android检测辅助功能是否开启
+     *
      * @param mContext
      * @return
      */
@@ -60,7 +64,7 @@ public class PermissionUtil {
 
                     Logger.i("accessibilityService :: " + accessibilityService + " " + service);
                     if (accessibilityService.equalsIgnoreCase(service)) {
-                        Logger.i( "We've found the correct setting - accessibility is switched on!");
+                        Logger.i("We've found the correct setting - accessibility is switched on!");
                         return true;
                     }
                 }

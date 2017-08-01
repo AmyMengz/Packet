@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center_vertical"
+    android:paddingBottom="@dimen/setting_item_padding_vertical"
+    android:paddingLeft="@dimen/setting_item_padding_horizontal"
+    android:paddingRight="@dimen/setting_item_padding_horizontal"
+    android:paddingTop="@dimen/setting_item_padding_vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/setting_item_text_padding"
+            android:text="@string/setting_open_Accessibility" />
+
+        <TextView
+            android:id="@+id/tv_little_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/setting_item_text_padding"
+            android:text="@string/setting_open_auto_start"
+            android:textColor="@color/setting_little_tip_color"
+            android:textSize="@dimen/setting_little_text_size" />
+
+    </LinearLayout>
+
+    <ToggleButton
+        android:id="@+id/tb_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true" />
+
+
+</RelativeLayout>

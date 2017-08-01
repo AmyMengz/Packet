@@ -4,4 +4,16 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="transparent">#00ffffff</color>
+    <color name="black">#000000</color>
+    <color name="action_bar_color1">#3e3e3e</color>
+    <color name="action_bar_color">#fc5555</color>
+    <color name="title_text_color">#ffffff</color>
+    <color name="white">#ffffff</color>
+    <color name="gray">#eea19e9e</color>
+    <color name="gray1">#eedfdddd</color>
+    <color name="gray0">#eeedecec</color>
+    <color name="yellow1">#eef2bf32</color>
+
+
+    <color name="setting_little_tip_color">#eef2bf32</color>
 </resources>
