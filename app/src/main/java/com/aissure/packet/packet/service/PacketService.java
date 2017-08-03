@@ -1,4 +1,4 @@
-package service;
+package com.aissure.packet.packet.service;
 
 import android.accessibilityservice.AccessibilityService;
 import android.os.Build;
@@ -18,8 +18,7 @@ public class PacketService extends AccessibilityService {
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
 
-        Logger.i("2222222222222"+event.getClass()+"  "+event.getPackageName()+"  "+AccessibilityEvent.eventTypeToString(event.getEventType()));
-//        if()
+        Logger.i(event.getClass()+"  "+event.getPackageName()+"  "+AccessibilityEvent.eventTypeToString(event.getEventType()));
         IJobFactory jobFactory = new JobFactory();
         BaseAccessbilityJob weChatJob = jobFactory.createWeiXinJob();
         weChatJob.onCreatJob(this);

@@ -2,6 +2,8 @@ package com.aissure.packet.packet.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.service.notification.NotificationListenerService;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -39,6 +41,12 @@ public class MainActivity extends BaseActivity implements MainView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         InjectUtils.injectAll(this);
+        String string = Settings.Secure.getString(getContentResolver(),
+                "enabled_notification_listeners");
+        if (!string.contains(NotificationListenerService.class.getName())) {
+            startActivity(new Intent(
+                    "android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"));
+        }
         controller = new MainController(this, this);
 //        PermissionUtil.checkAccessibility(this);
         initReact();

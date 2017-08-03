@@ -6,14 +6,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.aissure.packet.packet.R;
 import com.aissure.packet.packet.controller.SettingsController;
+import com.aissure.packet.packet.utils.PermissionUtil;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/7/29.
@@ -22,8 +26,10 @@ import java.util.List;
 public class SettingAdapter extends  BaseAdapter{
     List<HashMap<String,Object>> mList;
     LayoutInflater inflater;
+    Activity mContext;
     public SettingAdapter(Activity context, List<HashMap<String,Object>> lists){
         this.mList = lists;
+        mContext = context;
         inflater = context.getLayoutInflater();
     }
     @Override
@@ -43,7 +49,7 @@ public class SettingAdapter extends  BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
+        Map<String,Object> map = mList.get(position);
         ViewHolder holder = null;
         if(convertView==null){
             convertView = inflater.inflate(R.layout.item_setting,null);
@@ -55,18 +61,42 @@ public class SettingAdapter extends  BaseAdapter{
         }else {
             holder = (ViewHolder)convertView.getTag();
         }
-        holder.tvTips.setText(mList.get(position).get(SettingsController.KEY_TEXT)+"");
-        Object littleTip = mList.get(position).get(SettingsController.KEY_LITTLE_TEXT);
+        holder.tvTips.setText(map.get(SettingsController.KEY_TEXT)+"");
+        Object littleTip = map.get(SettingsController.KEY_LITTLE_TEXT);
         if(littleTip!=null&&!TextUtils.isEmpty(littleTip+"")){
             holder.tvLittleTips.setVisibility(View.VISIBLE);
             holder.tvLittleTips.setText(littleTip+"");
         }else {
             holder.tvLittleTips.setVisibility(View.GONE);
         }
+        int id = (Integer)map.get(SettingsController.KEY_ID);
+        switch (id){
+            case SettingsController.ID_OPEN_ACCESSIBILITY:
+                holder.toggleButton.setVisibility(View.VISIBLE);
+                boolean isOn = PermissionUtil.isAccessibilitySettingsOn(mContext);
+                holder.toggleButton.setChecked(isOn);
+                holder.toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        PermissionUtil.openAccessibilitySet(mContext);
+//                        Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+//                        mContext.startActivityForResult();
+                        Toast.makeText(mContext, String.format(mContext.getResources().getString(R.string.main_check_permission), mContext.getString(R.string.app_name))
+                                , Toast.LENGTH_LONG).show();
+                    }
+                });
+                break;
+            case SettingsController.ID_SET_DELEY_TIME:
+                holder.toggleButton.setVisibility(View.INVISIBLE);
+                break;
+            case SettingsController.ID_SET_STABILITY:
+                holder.toggleButton.setVisibility(View.INVISIBLE);
+                break;
+        }
         return convertView;
     }
 
-    class ViewHolder{
+    public class ViewHolder{
         TextView tvTips;
         TextView tvLittleTips;
         Button optBtn;

@@ -8,4 +8,5 @@ import android.widget.BaseAdapter;
 
 public interface SettingsView extends BaseView{
     public void setAdapter(BaseAdapter adapter);
+
 }

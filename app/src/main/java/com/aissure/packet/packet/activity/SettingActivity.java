@@ -28,6 +28,7 @@ public class SettingActivity extends BaseActivity implements SettingsView{
         InjectUtils.injectAll(this);
         initReact();
         controller = new SettingsController(this,this);
+        lvSettings.setOnItemClickListener(controller);
     }
 
     @Override

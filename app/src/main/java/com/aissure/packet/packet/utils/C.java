@@ -14,5 +14,8 @@ public class C {
     public static final String BUTTON_CLASS_NAME = "android.widget.Button";
     public static final String LISTVIEW_CLASS_NAME = "android.widget.ListView";
 
+    public static final String PACKAGE_MIUI_SECURITY_CENTER = "com.miui.securitycenter";
+    public static final String ACTIVITY_MIUI_AUTO_START = "com.miui.permcenter.autostart.AutoStartManagementActivity";
+
 //    public static final String
 }

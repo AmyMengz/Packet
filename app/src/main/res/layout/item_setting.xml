@@ -35,9 +35,14 @@
 
     <ToggleButton
         android:id="@+id/tb_switch"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/setting_tg_width"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true" />
-
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:background="@android:color/transparent"
+        android:button="@drawable/togglebtn_bg_un"
+        android:textOff=""
+        android:textOn=""/>
+    <!---->
 
 </RelativeLayout>

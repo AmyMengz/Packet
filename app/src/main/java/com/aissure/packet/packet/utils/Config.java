@@ -30,8 +30,8 @@ public class Config {
     public static int getInt(Context  context,String key,int value){
         return  getSettingsSpInstance(context).getInt(key,value);
     }
-    public static void setInt(Context context,String key,int value){
-        getSettingsSpInstance(context).edit().putInt(key,value).commit();
+    public static boolean setInt(Context context,String key,int value){
+        return getSettingsSpInstance(context).edit().putInt(key,value).commit();
     }
 
     public static boolean getBoolean(Context  context,String key,boolean value){
@@ -55,8 +55,8 @@ public class Config {
     public static int getWechatOpenDelayTime(Context context) {
         return getInt(context,KEY_WECHAT_DELAY_TIME,D_WECHAT_DELAY_TIME);
     }
-    public static void setWechatOpenDelayTime(Context context,int value) {
-        setInt(context,KEY_WECHAT_DELAY_TIME,D_WECHAT_DELAY_TIME);
+    public static boolean setWechatOpenDelayTime(Context context,int value) {
+        return setInt(context,KEY_WECHAT_DELAY_TIME,value);
     }
 
     /** 免费声明*/

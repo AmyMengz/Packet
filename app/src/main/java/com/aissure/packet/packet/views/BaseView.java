@@ -7,4 +7,5 @@ package com.aissure.packet.packet.views;
 public interface BaseView {
 //    public void toast(String tips);
     public void showToast(final String tips);
+    public void showErrorToast(final String tips);
 }

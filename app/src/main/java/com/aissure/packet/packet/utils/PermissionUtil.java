@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import com.aissure.packet.packet.R;
 
-import service.PacketService;
+import com.aissure.packet.packet.service.PacketService;
 
 
 /**
@@ -18,18 +18,22 @@ import service.PacketService;
 public class PermissionUtil {
     public static boolean checkAccessibility(Context context) {
         if (!isAccessibilitySettingsOn(context)) {
-            try {
-                //打开系统设置中辅助功能
-                Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
-                context.startActivity(intent);
-                Toast.makeText(context, String.format(context.getResources().getString(R.string.main_check_permission), context.getString(R.string.app_name))
-                        , Toast.LENGTH_LONG).show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            openAccessibilitySet(context);
             return false;
         }
         return true;
+    }
+
+    public static void openAccessibilitySet(Context context){
+        try {
+            //打开系统设置中辅助功能
+            Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+            context.startActivity(intent);
+            Toast.makeText(context, String.format(context.getResources().getString(R.string.main_check_permission), context.getString(R.string.app_name))
+                    , Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

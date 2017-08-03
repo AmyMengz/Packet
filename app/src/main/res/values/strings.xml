@@ -18,6 +18,17 @@
 
     <string name="setting_title">设置</string>
     <string name="setting_open_Accessibility">开启辅助功能</string>
+    <string name="setting_stability">加强软件稳定性</string>
     <string name="setting_open_auto_start">开启自启动</string>
     <string name="setting_delay_time">设置延迟时间</string>
+
+
+    <string name="setting_delay_time_not_null">延迟时间不能为空</string>
+    <string name="setting_delay_time_must_be_number">延迟时间必须为数字</string>
+
+    <string name="set_ok">设置成功</string>
+    <string name="dialog_ok">好</string>
+    <string name="dialog_cancle">取消</string>
+    <string name="second">秒</string>
+    <string name="setting_open_auto_start_permission">开启自启动权限</string>
 </resources>

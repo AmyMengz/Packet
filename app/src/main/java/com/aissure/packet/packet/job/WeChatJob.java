@@ -9,6 +9,7 @@ import android.os.Parcelable;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
+import com.aissure.packet.packet.service.PacketService;
 import com.aissure.packet.packet.utils.AccessibilityHelper;
 import com.aissure.packet.packet.utils.C;
 import com.aissure.packet.packet.utils.Config;
@@ -16,8 +17,6 @@ import com.aissure.packet.packet.utils.Logger;
 import com.aissure.packet.packet.utils.NotifyHelper;
 
 import java.util.List;
-
-import service.PacketService;
 
 
 /**
@@ -174,7 +173,7 @@ public class WeChatJob extends BaseAccessbilityJob {
         }
         AccessibilityNodeInfo targetNode = null;
         targetNode = AccessibilityHelper.findNodeInfosById(nodeInfo, "com.tencent.mm:id/bn9");
-//        Logger.i("targetNode::::" + targetNode);
+        Logger.i("拆红包 targetNode::::" + targetNode);
         if (targetNode == null) {
 
         }
@@ -182,6 +181,7 @@ public class WeChatJob extends BaseAccessbilityJob {
         if (targetNode != null) {
             long sDelayTime = Config.getWechatOpenDelayTime(getContext());
             final AccessibilityNodeInfo node = targetNode;
+            Logger.i("拆红包 sDelayTime::::" + sDelayTime+" ");
 //            AccessibilityHelper.performClick(node);
             if (sDelayTime != 0) {
                 getHandler().postDelayed(new Runnable() {
@@ -191,6 +191,8 @@ public class WeChatJob extends BaseAccessbilityJob {
                     }
                 }, sDelayTime);
 
+            }else{
+                 AccessibilityHelper.performClick(node);
             }
         }
     }

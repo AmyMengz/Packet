@@ -22,8 +22,11 @@
     <dimen name="item_text_margin">5dp</dimen>
     <dimen name="main_tips_padding">15dp</dimen>
 
-    <dimen name="setting_item_text_padding">1dp</dimen>
+    <dimen name="setting_item_text_padding">2dp</dimen>
     <dimen name="setting_item_padding_vertical">8dp</dimen>
     <dimen name="setting_item_padding_horizontal">15dp</dimen>
     <dimen name="setting_little_text_size">12dp</dimen>
+    <dimen name="setting_tg_width">55dp</dimen>
+    <dimen name="dialog_et_margain">5dp</dimen>
+    <dimen name="dialog_margain">25dp</dimen>
 </resources>
