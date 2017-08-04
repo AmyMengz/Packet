@@ -1,5 +1,6 @@
 package com.aissure.packet.packet.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.Settings;
@@ -32,6 +33,19 @@ public class PermissionUtil {
             Toast.makeText(context, String.format(context.getResources().getString(R.string.main_check_permission), context.getString(R.string.app_name))
                     , Toast.LENGTH_LONG).show();
         } catch (Exception e) {
+            Logger.i("openAccessibilitySet = EEEEEEE" + e);
+            e.printStackTrace();
+        }
+    }
+    public static void openAccessibilitySetForResult(Activity context,int requestCode){
+        try {
+            //打开系统设置中辅助功能
+            Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+            context.startActivityForResult(intent,requestCode);
+            Toast.makeText(context, String.format(context.getResources().getString(R.string.main_check_permission), context.getString(R.string.app_name))
+                    , Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            Logger.i("openAccessibilitySet = EEEEEEE" + e);
             e.printStackTrace();
         }
     }

@@ -6,9 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.aissure.packet.packet.R;
@@ -75,16 +73,6 @@ public class SettingAdapter extends  BaseAdapter{
                 holder.toggleButton.setVisibility(View.VISIBLE);
                 boolean isOn = PermissionUtil.isAccessibilitySettingsOn(mContext);
                 holder.toggleButton.setChecked(isOn);
-                holder.toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        PermissionUtil.openAccessibilitySet(mContext);
-//                        Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
-//                        mContext.startActivityForResult();
-                        Toast.makeText(mContext, String.format(mContext.getResources().getString(R.string.main_check_permission), mContext.getString(R.string.app_name))
-                                , Toast.LENGTH_LONG).show();
-                    }
-                });
                 break;
             case SettingsController.ID_SET_DELEY_TIME:
                 holder.toggleButton.setVisibility(View.INVISIBLE);
@@ -92,14 +80,19 @@ public class SettingAdapter extends  BaseAdapter{
             case SettingsController.ID_SET_STABILITY:
                 holder.toggleButton.setVisibility(View.INVISIBLE);
                 break;
+            case SettingsController.ID_SET_MUTE_NOTIFICATION:
+                holder.toggleButton.setVisibility(View.VISIBLE);
+                break;
         }
         return convertView;
     }
 
+
+
     public class ViewHolder{
-        TextView tvTips;
-        TextView tvLittleTips;
-        Button optBtn;
-        ToggleButton toggleButton;
+        public TextView tvTips;
+        public TextView tvLittleTips;
+        public Button optBtn;
+        public ToggleButton toggleButton;
     }
 }

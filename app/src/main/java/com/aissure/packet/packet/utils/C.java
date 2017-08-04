@@ -17,5 +17,9 @@ public class C {
     public static final String PACKAGE_MIUI_SECURITY_CENTER = "com.miui.securitycenter";
     public static final String ACTIVITY_MIUI_AUTO_START = "com.miui.permcenter.autostart.AutoStartManagementActivity";
 
+
+    public static final String PACKAGE_NAME= "com.aissure.packet.packet";
+    public static final String ACTIVITY_MAIN = "com.aissure.packet.packet.activity.MainActivity";
+
 //    public static final String
 }

@@ -1,7 +1,16 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_padding">25dp</dimen>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+
+
+    <dimen name="one">1dp</dimen>
+
+    <dimen name="five">5dp</dimen>
+
+
     <dimen name="action_bar_horizontal_padding">16dp</dimen>
     <dimen name="action_bar_vertical_padding">10dp</dimen>
     <dimen name="corner_size">10dp</dimen>
@@ -13,12 +22,13 @@
     <dimen name="main_bg_margin_bottom">50dp</dimen>
     <dimen name="main_bg_margin_top">25dp</dimen>
 
+
     <dimen name="main_start_btn_width">150dp</dimen>
     <dimen name="main_big_text_size">23dp</dimen>
     <dimen name="main_text_size">16dp</dimen>
     <dimen name="main_grid_padding">10dp</dimen>
 
-
+    <dimen name="common_text_size">16dp</dimen>
     <dimen name="item_text_margin">5dp</dimen>
     <dimen name="main_tips_padding">15dp</dimen>
 
@@ -29,4 +39,13 @@
     <dimen name="setting_tg_width">55dp</dimen>
     <dimen name="dialog_et_margain">5dp</dimen>
     <dimen name="dialog_margain">25dp</dimen>
+
+
+
+    <dimen name="mute_time_vertical_padding">8dp</dimen>
+    <dimen name="mute_time_horizontal_padding">20dp</dimen>
+
+
+    <dimen name="mute_margin_top">40dp</dimen>
+    <dimen name="mute_text_distance">6dp</dimen>
 </resources>

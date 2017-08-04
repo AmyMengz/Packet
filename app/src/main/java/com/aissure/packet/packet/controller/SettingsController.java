@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,6 +13,8 @@ import android.widget.EditText;
 import com.aissure.packet.packet.R;
 import com.aissure.packet.packet.adapter.SettingAdapter;
 import com.aissure.packet.packet.utils.Config;
+import com.aissure.packet.packet.utils.OpenActivityUtil;
+import com.aissure.packet.packet.utils.PermissionUtil;
 import com.aissure.packet.packet.utils.StringUtil;
 import com.aissure.packet.packet.utils.UtilsDialog;
 import com.aissure.packet.packet.views.SettingsView;
@@ -29,13 +32,15 @@ public class SettingsController implements AdapterView.OnItemClickListener{
     List<HashMap<String,Object>> lists;
     Activity mContext;
     SettingsView viewInterface;
+    SettingAdapter adapter;
+    public static final int REQUEST_OPEN_ACCESSIBILITY = 0;
     public static final String KEY_TEXT= "KEY_TEXT";
     public static final String KEY_LITTLE_TEXT= "KEY_LITTLE_TEXT";
     public static final String KEY_ID= "KEY_ID";
     public static final int ID_OPEN_ACCESSIBILITY = 0;
     public static final int ID_SET_STABILITY = 1;
     public static final int ID_SET_DELEY_TIME = 2;
-    public static final int ID_SET_ = 2;
+    public static final int ID_SET_MUTE_NOTIFICATION = 3;
 //    public static final int
     public SettingsController(Activity context, SettingsView viewInterface){
         this.mContext = context;
@@ -54,14 +59,17 @@ public class SettingsController implements AdapterView.OnItemClickListener{
         map3.put(KEY_ID,ID_SET_DELEY_TIME);
         map3.put(KEY_TEXT,mContext.getResources().getString(R.string.setting_delay_time));
         HashMap<String,Object> map4 = new HashMap<>();
-        map3.put(KEY_ID,ID_SET_DELEY_TIME);
-        map3.put(KEY_TEXT,mContext.getResources().getString(R.string.setting_delay_time));
+        map4.put(KEY_ID,ID_SET_MUTE_NOTIFICATION);
+        map4.put(KEY_TEXT,mContext.getResources().getString(R.string.setting_mute_notification));
+
+
 
 
         lists.add(map1);
         lists.add(map2);
         lists.add(map3);
-        SettingAdapter adapter = new SettingAdapter(mContext,lists);
+        lists.add(map4);
+        adapter = new SettingAdapter(mContext,lists);
         viewInterface.setAdapter(adapter);
 
     }
@@ -72,7 +80,7 @@ public class SettingsController implements AdapterView.OnItemClickListener{
         Map<String,Object> map = lists.get(position);
         switch ((Integer)map.get(KEY_ID)){
             case ID_OPEN_ACCESSIBILITY:
-
+                PermissionUtil.openAccessibilitySetForResult(mContext,REQUEST_OPEN_ACCESSIBILITY);
                 break;
             case ID_SET_DELEY_TIME:
                 int deleyTime = Config.getWechatOpenDelayTime(mContext);
@@ -98,14 +106,15 @@ public class SettingsController implements AdapterView.OnItemClickListener{
                 break;
             case ID_SET_STABILITY:
                 viewInterface.showToast(mContext.getString(R.string.setting_open_auto_start_permission));
-//               if(! OpenActivityUtil.startAutoStart(mContext)){
-                   Intent intent = //new Intent();
-//                intent.setAction(Settings.ACTION_QUICK_LAUNCH_SETTINGS);
+               if(! OpenActivityUtil.startAutoStart(mContext)){
+                   Intent intent = new Intent();
+                intent.setAction(Settings.ACTION_QUICK_LAUNCH_SETTINGS);
                            getAppDetailSettingIntent();
                    mContext.startActivity(intent);
-//               };
-//                mContext.startactivity(mContext, MainActivity.class);
-
+               };
+                break;
+            case ID_SET_MUTE_NOTIFICATION:
+                OpenActivityUtil.startMuteSetActivity(mContext);
                 break;
         }
     }
@@ -121,6 +130,12 @@ public class SettingsController implements AdapterView.OnItemClickListener{
             localIntent.putExtra("com.android.settings.ApplicationPkgName", mContext.getPackageName());
 
         }
+//        localIntent.setAction(Intent.ACTION_MAIN);
+//        localIntent.setClassName("com.android.settings","com.android.settings.AppOpsDetailsActivity");
+//        localIntent.putExtra("com.android.settings.ApplicationPkgName", mContext.getPackageName());
+        //com.android.settings/.Settings$AppOpsDetailsActivity
         return localIntent;
     }
+
+
 }

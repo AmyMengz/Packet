@@ -42,7 +42,9 @@
         android:background="@android:color/transparent"
         android:button="@drawable/togglebtn_bg_un"
         android:textOff=""
-        android:textOn=""/>
+        android:textOn=""
+        android:focusable="false"
+        android:clickable="false"/>
     <!---->
 
 </RelativeLayout>

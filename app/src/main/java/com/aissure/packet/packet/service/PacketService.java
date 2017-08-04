@@ -9,6 +9,7 @@ import com.aissure.packet.packet.job.BaseAccessbilityJob;
 import com.aissure.packet.packet.job.IJobFactory;
 import com.aissure.packet.packet.job.JobFactory;
 import com.aissure.packet.packet.utils.Logger;
+import com.aissure.packet.packet.utils.OpenActivityUtil;
 
 
 /**
@@ -33,6 +34,9 @@ public class PacketService extends AccessibilityService {
     @Override
     protected void onServiceConnected() {
         super.onServiceConnected();
+        Logger.i("onServiceConnected");
+        OpenActivityUtil.startMainActivity(this);
+
     }
 
     @Override
