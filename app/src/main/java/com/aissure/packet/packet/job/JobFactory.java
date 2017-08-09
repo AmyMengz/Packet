@@ -5,8 +5,13 @@ package com.aissure.packet.packet.job;
  */
 
 public class JobFactory implements IJobFactory{
-    @Override
-    public BaseAccessbilityJob createWeiXinJob() {
-        return WeChatJob.getWeChatJob();
-    }
+//    @Override
+//    public BaseAccessibilityJob createWeiXinJob() {
+//        return WeChatJob.getWeChatJob();
+//    }
+//
+//    @Override
+//    public BaseAccessibilityJob createQQJob() {
+//        return QQJob.getQQJob();
+//    }
 }

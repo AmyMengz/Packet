@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aissure.packet.packet.R;
+import com.aissure.packet.packet.utils.Config;
 import com.aissure.packet.packet.utils.StringUtil;
 
 /**
@@ -78,5 +79,8 @@ public abstract class BaseActivity extends AppCompatActivity {
                 toast.show();
             }
         });
+    }
+    public Config getConfig(){
+        return Config.getConfig(this);
     }
 }

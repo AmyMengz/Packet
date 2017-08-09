@@ -9,10 +9,10 @@ import android.os.Parcelable;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
+import com.aissure.packet.packet.service.IStatusBarNotification;
 import com.aissure.packet.packet.service.PacketService;
 import com.aissure.packet.packet.utils.AccessibilityHelper;
 import com.aissure.packet.packet.utils.C;
-import com.aissure.packet.packet.utils.Config;
 import com.aissure.packet.packet.utils.Logger;
 import com.aissure.packet.packet.utils.NotifyHelper;
 
@@ -23,7 +23,7 @@ import java.util.List;
  * Created by Administrator on 2017/7/14.
  */
 
-public class WeChatJob extends BaseAccessbilityJob {
+public class WeChatJob extends BaseAccessibilityJob {
     PacketService service;
     private static final int WINDOW_NONE = 0;
     private static final int WINDOW_LUCKYMONEY_RECEIVEUI = 1;
@@ -39,25 +39,28 @@ public class WeChatJob extends BaseAccessbilityJob {
     private static final int FROM_CHAT_LIST = 2;
 
     private int curFrom = FROM_NOTIFY;
-    private  static  WeChatJob instance;
-    private WeChatJob(){
 
+    @Override
+    public String getTargetPackageName() {
+        return C.WECHAT_PACKAGENAME;
     }
-    public static  WeChatJob getWeChatJob(){
-        if(instance==null){
-            synchronized (WeChatJob.class){
-                if(instance==null){
-                    instance = new WeChatJob();
-                }
-            }
-        }
-        return instance;
 
-    }
+    //    private  static  WeChatJob instance;
+//    private WeChatJob(){
+//    }
+//    public static  WeChatJob getWeChatJob(){
+//        if(instance==null){
+//            synchronized (WeChatJob.class){
+//                if(instance==null){
+//                    instance = new WeChatJob();
+//                }
+//            }
+//        }
+//        return instance;
+//    }
     @Override
     public void onCreatJob(PacketService service) {
         super.onCreatJob(service);
-        this.service = service;
     }
 
     @Override
@@ -135,6 +138,24 @@ public class WeChatJob extends BaseAccessbilityJob {
                 break;
         }
     }
+
+    @Override
+    public void onStopJob() {
+
+    }
+
+    @Override
+    public void onNotificationPosted(IStatusBarNotification sbn) {
+        Notification nf = sbn.getNotification();
+        String text = String.valueOf(sbn.getNotification().tickerText);
+        notificationEvent(text,nf);
+    }
+
+    @Override
+    public boolean isEnable() {
+        return false;
+    }
+
     /**
      * 聊天界面打开红包
      *
@@ -148,7 +169,12 @@ public class WeChatJob extends BaseAccessbilityJob {
         } else if (C.LUCKY_MONEY_DETAIL_UI.equals(event.getClassName())) {//拆红包后的红包详情
             mCurrentWindow = WINDOW_LUCKYMONEY_DETAIL;
 //            if(getConfig().getWechatAfterGetHongBaoEvent() == Config.WX_AFTER_GET_GOHOME) { //返回主界面，以便收到下一次的红包通知
-            AccessibilityHelper.performBack(getService());
+//            AccessibilityHelper.performBack(getService());
+            if(getConfig().isReturnHome()){
+                AccessibilityHelper.performHome(getService());
+            }else {
+                AccessibilityHelper.performBack(getService());
+            }
             setIsReceivingFlag(false);
 
 //            }
@@ -179,7 +205,7 @@ public class WeChatJob extends BaseAccessbilityJob {
         }
 
         if (targetNode != null) {
-            long sDelayTime = Config.getWechatOpenDelayTime(getContext());
+            long sDelayTime = getConfig().getWechatOpenDelayTime();
             final AccessibilityNodeInfo node = targetNode;
             Logger.i("拆红包 sDelayTime::::" + sDelayTime+" ");
 //            AccessibilityHelper.performClick(node);

@@ -26,13 +26,33 @@
     <string name="setting_delay_time_must_be_number">延迟时间必须为数字</string>
     <string name="setting_open_auto_start_permission">开启自启动权限</string>
 
+    <string name="setting_is_notify_sound">开启红包提示音</string>
+    <string name="setting_return_to_home">抢完后返回桌面</string>
+
 
     <string name="mute_title">免打扰设置</string>
     <string name="mute_tips">您可以根据生活工作时间，设置不抢红包时间段，设置后每日相应时间段内系统会自动停止抢红包，时间段外会自动恢复</string>
     <string name="mute_set_mute_time">设置免打扰时间</string>
+
+    <string name="mute_add_mute_time">添加</string>
+    <string name="mute_ok_mute_time">确定</string>
+
+
+
+
+
+
+
+
+
+
+
+
     <string name="set_ok">设置成功</string>
     <string name="dialog_ok">好</string>
     <string name="dialog_cancle">取消</string>
     <string name="second">秒</string>
+    <string name="hour">:</string>
+    <string name="millisecond">毫秒</string>
 
 </resources>

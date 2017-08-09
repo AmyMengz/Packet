@@ -76,7 +76,7 @@ public class SplashController {
             @Override
             public void onClick(View v) {
                 mContext.startActivity(new Intent(mContext, MainActivity.class));
-                Config.setAgreement(mContext,true);
+                Config.getConfig(mContext).setAgreement(true);
                 mContext.finish();
             }
         });

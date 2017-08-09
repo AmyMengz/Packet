@@ -10,11 +10,11 @@ import com.aissure.packet.packet.service.PacketService;
  * Created by Administrator on 2017/7/13.
  */
 
-public interface AccessbilityJob {
+public interface AccessibilityJob {
     String getTargetPackageName();
     void onCreatJob(PacketService setvice);
     void onReceiveJob(AccessibilityEvent event);
     void onStopJob();
-    void onNotificationPosted(IStatusBarNotification service);
+    void onNotificationPosted(IStatusBarNotification sbn);
     boolean isEnable();
 }

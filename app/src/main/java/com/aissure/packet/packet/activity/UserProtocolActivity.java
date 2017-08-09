@@ -8,6 +8,7 @@ import com.aissure.packet.packet.R;
 import com.mz.annotation.ContentViewInject;
 import com.mz.annotation.InjectUtils;
 import com.mz.annotation.ViewInject;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by Administrator on 2017/7/26.
@@ -22,6 +23,16 @@ public class UserProtocolActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         InjectUtils.injectAll(this);
         initReact();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @Override

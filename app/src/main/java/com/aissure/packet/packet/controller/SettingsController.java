@@ -37,10 +37,13 @@ public class SettingsController implements AdapterView.OnItemClickListener{
     public static final String KEY_TEXT= "KEY_TEXT";
     public static final String KEY_LITTLE_TEXT= "KEY_LITTLE_TEXT";
     public static final String KEY_ID= "KEY_ID";
-    public static final int ID_OPEN_ACCESSIBILITY = 0;
-    public static final int ID_SET_STABILITY = 1;
-    public static final int ID_SET_DELEY_TIME = 2;
-    public static final int ID_SET_MUTE_NOTIFICATION = 3;
+    public static final int ID_OPEN_ACCESSIBILITY = 1;
+    public static final int ID_SET_STABILITY = 2;
+    public static final int ID_SET_DELEY_TIME = 3;
+    public static final int ID_SET_MUTE_NOTIFICATION = 4;
+    public static final int ID_IS_NOTIFY_SOUND = 5;
+
+    public static final int ID_RETURN_TO_HOME = 6;
 //    public static final int
     public SettingsController(Activity context, SettingsView viewInterface){
         this.mContext = context;
@@ -62,6 +65,13 @@ public class SettingsController implements AdapterView.OnItemClickListener{
         map4.put(KEY_ID,ID_SET_MUTE_NOTIFICATION);
         map4.put(KEY_TEXT,mContext.getResources().getString(R.string.setting_mute_notification));
 
+        HashMap<String,Object> map5 = new HashMap<>();
+        map5.put(KEY_ID,ID_IS_NOTIFY_SOUND);
+        map5.put(KEY_TEXT,mContext.getResources().getString(R.string.setting_is_notify_sound));
+
+        HashMap<String,Object> map6 = new HashMap<>();
+        map6.put(KEY_ID,ID_RETURN_TO_HOME);
+        map6.put(KEY_TEXT,mContext.getResources().getString(R.string.setting_return_to_home));
 
 
 
@@ -69,6 +79,8 @@ public class SettingsController implements AdapterView.OnItemClickListener{
         lists.add(map2);
         lists.add(map3);
         lists.add(map4);
+        lists.add(map5);
+        lists.add(map6);
         adapter = new SettingAdapter(mContext,lists);
         viewInterface.setAdapter(adapter);
 
@@ -77,17 +89,23 @@ public class SettingsController implements AdapterView.OnItemClickListener{
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         SettingAdapter.ViewHolder holder = (SettingAdapter.ViewHolder) view.getTag();
+        boolean status = holder.toggleButton.isChecked();
         Map<String,Object> map = lists.get(position);
         switch ((Integer)map.get(KEY_ID)){
             case ID_OPEN_ACCESSIBILITY:
                 PermissionUtil.openAccessibilitySetForResult(mContext,REQUEST_OPEN_ACCESSIBILITY);
+
                 break;
             case ID_SET_DELEY_TIME:
-                int deleyTime = Config.getWechatOpenDelayTime(mContext);
+                int deleyTime = Config.getConfig(mContext).getWechatOpenDelayTime();
                 UtilsDialog.getUtilsDialog(mContext).showChangTextDialog("" + deleyTime, mContext.getString(R.string.setting_delay_time),
-                        "", mContext.getString(R.string.second), new UtilsDialog.DialogOptListener() {
+                        "", mContext.getString(R.string.millisecond), new UtilsDialog.DialogOptListener() {
                             @Override
-                            public void onBack(EditText et) {
+                            public void onBack(Object o) {
+                                if(!(o instanceof EditText)){
+                                    return;
+                                }
+                                EditText et = (EditText)o;
                                 if(TextUtils.isEmpty(et.getText())){
                                     viewInterface.showErrorToast(mContext.getString(R.string.setting_delay_time_not_null));
                                 }else {
@@ -96,7 +114,7 @@ public class SettingsController implements AdapterView.OnItemClickListener{
                                     if(!StringUtil.isNumber(newTime)){
                                         viewInterface.showErrorToast(mContext.getString(R.string.setting_delay_time_must_be_number));
                                     }else {
-                                        Config.setWechatOpenDelayTime(mContext,Integer.parseInt(newTime));
+                                        Config.getConfig(mContext).setWechatOpenDelayTime(Integer.parseInt(newTime));
                                         viewInterface.showToast(mContext.getString(R.string.set_ok));
                                     }
                                 }
@@ -114,7 +132,21 @@ public class SettingsController implements AdapterView.OnItemClickListener{
                };
                 break;
             case ID_SET_MUTE_NOTIFICATION:
-                OpenActivityUtil.startMuteSetActivity(mContext);
+                boolean state = holder.toggleButton.isChecked();
+                holder.toggleButton.setChecked(!state);
+                Config.getConfig(mContext).setIsMute(!state);
+                if(!state){
+                    OpenActivityUtil.startMuteSetActivity(mContext);
+                }
+                break;
+            case ID_IS_NOTIFY_SOUND:
+
+                Config.getConfig(mContext).setIsNotifySound(!status);
+                holder.toggleButton.setChecked(!status);
+                break;
+            case ID_RETURN_TO_HOME:
+                Config.getConfig(mContext).setReturnHome(!status);
+                holder.toggleButton.setChecked(!status);
                 break;
         }
     }
@@ -136,6 +168,7 @@ public class SettingsController implements AdapterView.OnItemClickListener{
         //com.android.settings/.Settings$AppOpsDetailsActivity
         return localIntent;
     }
+
 
 
 }

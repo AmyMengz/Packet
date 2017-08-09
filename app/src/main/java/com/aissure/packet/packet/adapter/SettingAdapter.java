@@ -11,11 +11,14 @@ import android.widget.ToggleButton;
 
 import com.aissure.packet.packet.R;
 import com.aissure.packet.packet.controller.SettingsController;
+import com.aissure.packet.packet.utils.Config;
 import com.aissure.packet.packet.utils.PermissionUtil;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.aissure.packet.packet.utils.Config.getConfig;
 
 /**
  * Created by Administrator on 2017/7/29.
@@ -82,6 +85,17 @@ public class SettingAdapter extends  BaseAdapter{
                 break;
             case SettingsController.ID_SET_MUTE_NOTIFICATION:
                 holder.toggleButton.setVisibility(View.VISIBLE);
+                boolean ismute = getConfig(mContext).isMute();
+                holder.toggleButton.setChecked(ismute);
+                break;
+            case SettingsController.ID_IS_NOTIFY_SOUND:
+                holder.toggleButton.setVisibility(View.VISIBLE);
+                boolean isnotify = getConfig(mContext).isNotifySound();
+                holder.toggleButton.setChecked(isnotify);
+                break;
+            case SettingsController.ID_RETURN_TO_HOME:
+                boolean isreturn = Config.getConfig(mContext).isReturnHome();
+                holder.toggleButton.setChecked(isreturn);
                 break;
         }
         return convertView;

@@ -100,6 +100,9 @@
                 <data android:scheme="package"/>
             </intent-filter>
         </receiver>
+        <meta-data android:value="5988383fb27b0a332d00135b" android:name="UMENG_APPKEY"/>
+        <meta-data android:value="Channel ID" android:name="UMENG_CHANNEL"/>
     </application>
+
 
 </manifest>

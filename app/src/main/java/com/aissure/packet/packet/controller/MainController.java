@@ -18,7 +18,7 @@ import java.util.List;
  * Created by Administrator on 2017/7/27.
  */
 
-public class MainController {
+public class MainController{
     private List<View> viewList = new ArrayList<>();
     Activity mContext;
     MainView viewInterface;

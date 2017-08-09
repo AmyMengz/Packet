@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/mute_item_margin">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="@dimen/mute_text_distance"
+        android:text="@string/mute_set_mute_time"
+        android:textColor="@color/black"
+        android:textSize="@dimen/common_text_size" />
+
+    <TextView
+        android:id="@+id/mute_time_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_time_text"
+        android:text="00:00" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/mute_text_distance"
+        android:text="~" />
+
+    <TextView
+        android:id="@+id/mute_time_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_time_text"
+        android:text="08:00" />
+
+    <ImageView
+        android:id="@+id/iv_mute_remove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/mute_text_distance"
+        android:src="@drawable/remove"
+        android:visibility="gone"/>
+
+</LinearLayout>

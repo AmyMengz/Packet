@@ -42,10 +42,10 @@
 
 
 
-    <dimen name="mute_time_vertical_padding">8dp</dimen>
-    <dimen name="mute_time_horizontal_padding">20dp</dimen>
+    <dimen name="mute_time_vertical_padding">7dp</dimen>
+    <dimen name="mute_time_horizontal_padding">15dp</dimen>
 
 
-    <dimen name="mute_margin_top">40dp</dimen>
-    <dimen name="mute_text_distance">6dp</dimen>
+    <dimen name="mute_item_margin">32dp</dimen>
+    <dimen name="mute_text_distance">5dp</dimen>
 </resources>

@@ -5,5 +5,6 @@ package com.aissure.packet.packet.job;
  */
 
 public interface IJobFactory {
-    public BaseAccessbilityJob createWeiXinJob();
+//    public BaseAccessibilityJob createWeiXinJob();
+//    public BaseAccessibilityJob createQQJob();
 }

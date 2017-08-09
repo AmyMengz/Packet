@@ -12,10 +12,12 @@ import com.aissure.packet.packet.adapter.SettingAdapter;
 import com.aissure.packet.packet.controller.SettingsController;
 import com.aissure.packet.packet.utils.Logger;
 import com.aissure.packet.packet.utils.PermissionUtil;
+import com.aissure.packet.packet.utils.UtilsDialog;
 import com.aissure.packet.packet.views.SettingsView;
 import com.mz.annotation.ContentViewInject;
 import com.mz.annotation.InjectUtils;
 import com.mz.annotation.ViewInject;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by Administrator on 2017/7/29.
@@ -44,6 +46,15 @@ public class SettingActivity extends BaseActivity implements SettingsView {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
@@ -70,5 +81,11 @@ public class SettingActivity extends BaseActivity implements SettingsView {
                 vh.toggleButton.setChecked(PermissionUtil.isAccessibilitySettingsOn(this));
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        UtilsDialog.getUtilsDialog(SettingActivity.this).disMissDialog();
     }
 }
